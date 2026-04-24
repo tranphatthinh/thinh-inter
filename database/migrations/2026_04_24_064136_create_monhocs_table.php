@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table-> string('mamon')->unique();
             $table-> string('tenmon');
-            $table-> intrger('sotinchi');
+            $table-> integer('sotinchi');
             $table->timestamps();
         });
     }
