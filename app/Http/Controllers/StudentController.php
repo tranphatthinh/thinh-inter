@@ -6,7 +6,7 @@ use App\Models\Sinhvien;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class SinhvienController extends Controller
+class StudentController extends Controller
 {
     public function index()
     {

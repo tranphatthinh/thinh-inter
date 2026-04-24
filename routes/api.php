@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\SinhvienController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sinhviens', [SinhvienController::class, 'index']);
-Route::get('/sinhviens/{id}', [SinhvienController::class, 'show']);
-Route::post('/sinhviens', [SinhvienController::class, 'store']);
-Route::put('/sinhviens/{id}', [SinhvienController::class, 'update']);
-Route::delete('/sinhviens/{id}', [SinhvienController::class, 'destroy']);
+Route::get('/sinhviens', [StudentController::class, 'index']);
+Route::get('/sinhviens/{id}', [StudentController::class, 'show']);
+Route::post('/sinhviens', [StudentController::class, 'store']);
+Route::put('/sinhviens/{id}', [StudentController::class, 'update']);
+Route::delete('/sinhviens/{id}', [StudentController::class, 'destroy']);
