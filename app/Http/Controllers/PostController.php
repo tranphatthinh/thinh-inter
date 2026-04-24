@@ -30,7 +30,7 @@ class PostController extends Controller
         return $post;
     }
 
-    public function delete($id)
+    public function detroy($id)
     {
         Post::destroy($id);
         return response()->json (['messeage'=>'Deleted']);
