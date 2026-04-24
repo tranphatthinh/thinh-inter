@@ -17,8 +17,8 @@ class KhoaController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'makhoa'=> 'request|string|max:255|unique:khoas',
-            'tenkhoa'=> 'request|string|max:255'
+            'makhoa'=> 'required|string|max:255|unique:khoas',
+            'tenkhoa'=> 'required|string|max:255'
         ]);
         $khoa = Khoa::create($data);
         return response()->json([
@@ -30,6 +30,7 @@ class KhoaController extends Controller
     {
         return Khoa::findOrFail($id);
     }
+    
     public function update(Request $request, $id)
     {
         $khoa = Khoa::findOrFail($id);
