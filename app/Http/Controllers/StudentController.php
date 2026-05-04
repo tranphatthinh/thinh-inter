@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sinhvien;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -11,16 +11,16 @@ class StudentController extends Controller
     public function index()
     {
         //
-        return Sinhvien::all();
+        return Student::all();
     }
 
     public function store(Request $request)
     {
         try {
         $data = $request->validate([
-            'masinhvien'=> 'required|string|max:50|unique:sinhviens',
+            'masinhvien'=> 'required|string|max:50|unique:students',
             'tensinhvien'=> 'required|string|max:255',
-            'email'=> 'required|email|max:50|unique:sinhviens'
+            'email'=> 'required|email|max:50|unique:students'
         ],
         [
             'masinhvien.required'=> 'masv khong duoc de trong',
@@ -33,7 +33,7 @@ class StudentController extends Controller
             'email.unique'=> 'email da ton tai'
         ]);
 
-        $sinhvien = Sinhvien::create($data);
+        $sinhvien = Student::create($data);
             return response()->json([
                 'message'=> 'da them thanh cong',
                 'data'=> $sinhvien
@@ -48,18 +48,18 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        return  Sinhvien::findOrFail($id);
+        return  Student::findOrFail($id);
     }
 
     public function update(Request $request, $id)
     {
-        $sinhvien = Sinhvien::findOrFail($id);
+        $sinhvien = Student::findOrFail($id);
         
     try{
         $data = $request->validate([
-            'masinhvien'=> 'sometimes|string|max:50|unique:sinhviens,masinhvien,'. $id,
+            'masinhvien'=> 'sometimes|string|max:50|unique:students,masinhvien,'. $id,
             'tensinhvien'=>'sometimes|string|max:255',
-            'email'=>'sometimes|email|max:50|unique:sinhviens,email,'. $id
+            'email'=>'sometimes|email|max:50|unique:students,email,'. $id
         ],
         [
             'email.email'=>'email khong dung dinh dang',
@@ -83,7 +83,7 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        Sinhvien::findOrFail($id)->delete();
+        Student::findOrFail($id)->delete();
         return response()->json([
             'message'=> 'xoa thanh cong'
         ]);
