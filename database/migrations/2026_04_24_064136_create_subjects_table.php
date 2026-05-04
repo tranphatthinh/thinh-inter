@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monhocs', function (Blueprint $table) {
+        Schema::create('supjects', function (Blueprint $table) {
             $table->id();
             $table-> string('mamon')->unique();
             $table-> string('tenmon');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('monhocs');
+        Schema::dropIfExists('supjects');
     }
 };
