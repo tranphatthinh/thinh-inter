@@ -16,7 +16,7 @@ class SupjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'mamon'=> 'required|string|max:50|unique:monhocs',
+            'mamon'=> 'required|string|max:50|unique:supjects',
             'tenmon'=> 'required|string|max:255',
             'sotinchi'=> 'required|integer|min:1|max:10'
         ]);
@@ -37,7 +37,7 @@ class SupjectController extends Controller
     {
         $monhoc = Supject::findOrFail($id);
         $data = $request->validate([
-            'mamon' => 'sometimes|string|max:50|unique:monhocs, mamon'. $id,
+            'mamon' => 'sometimes|string|max:50|unique:supjects, mamon'. $id,
             'tenmon'=> 'sometimes|string|max:255',
             'sotinchi' => 'sometimes|integer|min:1|max:10'
         ]);
