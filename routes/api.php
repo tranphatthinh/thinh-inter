@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\SupjectController;
 use Illuminate\Support\Facades\Route;
 use League\Config\ReadOnlyConfiguration;
 
@@ -19,3 +20,8 @@ Route::get('/khoas/{id}', [DepartmentController::class, 'show']);
 Route::post('/khoas', [DepartmentController::class, 'store']);
 Route::put('/khoas/{id}', [DepartmentController::class, 'update']);
 Route::delete('/khoas/{id}', [DepartmentController::class, 'destroy']);
+Route::get('/monhocs', [SupjectController::class, 'index']);
+Route::get('/monhocs/{id}', [SupjectController::class, 'show']);
+Route::post('/monhocs', [SupjectController::class, 'store']);
+Route::put('/monhocs/{id}', [SupjectController::class, 'update']);
+Route::delete('/monhocs/{id}', [SupjectController::class, 'destroy']);
