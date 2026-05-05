@@ -18,7 +18,8 @@ class SubjectController extends Controller
         $data = $request->validate([
             'mamon'=> 'required|string|max:50|unique:subjects',
             'tenmon'=> 'required|string|max:255',
-            'sotinchi'=> 'required|integer|min:1|max:10'
+            'sotinchi'=> 'required|integer|min:1|max:10',
+            'faculty_id' => 'required|exists:faculties,id'
         ]);
 
         $monhoc = Subject::create($data);
@@ -30,16 +31,17 @@ class SubjectController extends Controller
     
     public function show($id)
     {
-        return Subject::findOrFail($id);
+        return Subject::with('classrooms')->findOrFail($id);
     }
 
     public function update(Request $request, $id)
     {
         $monhoc = Subject::findOrFail($id);
         $data = $request->validate([
-            'mamon' => 'sometimes|string|max:50|unique:subjects, mamon'. $id,
+            'mamon' => 'sometimes|string|max:50|unique:subjects, mamon,'. $id,
             'tenmon'=> 'sometimes|string|max:255',
-            'sotinchi' => 'sometimes|integer|min:1|max:10'
+            'sotinchi' => 'sometimes|integer|min:1|max:10',
+            'faculty_id' => 'sometimes|exists:faculties,id'
         ]);
         $monhoc->update($data);
         return response()->json([
