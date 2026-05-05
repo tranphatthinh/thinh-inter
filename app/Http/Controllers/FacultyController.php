@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Department;
+use App\Models\Faculty;
 use Dotenv\Store\File\Reader;
 
-class DepartmentController extends Controller
+class FacultyController extends Controller
 {
     //
     public function index()
     {
-        return Department::all();
+        return Faculty::all();
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'makhoa'=> 'required|string|max:255|unique:departments',
+            'makhoa'=> 'required|string|max:255|unique:faculties',
             'tenkhoa'=> 'required|string|max:255'
         ]);
-        $khoa = Department::create($data);
+        $khoa = Faculty::create($data);
         return response()->json([
             'message'=> 'da them',
             'data'=>$khoa
@@ -28,15 +28,15 @@ class DepartmentController extends Controller
     }
     public function show($id)
     {
-        return Department::findOrFail($id);
+        return Faculty::findOrFail($id);
     }
     
     public function update(Request $request, $id)
     {
-        $khoa = Department::findOrFail($id);
+        $khoa = Faculty::findOrFail($id);
 
         $data = $request->validate([
-            'makhoa' => 'sometimes|string|max:255|unique:departments,makhoa,' .$id,
+            'makhoa' => 'sometimes|string|max:255|unique:faculties,makhoa,' .$id,
             'tenkhoa'=> 'sometimes|string|max:255'
         ]);
 
@@ -49,7 +49,7 @@ class DepartmentController extends Controller
     }
     public function destroy($id)
     {
-        Department::findOrFail($id)->delete();
+        Faculty::findOrFail($id)->delete();
         return response()->json([
             'message'=> 'da xoa'
         ]);

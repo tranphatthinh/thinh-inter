@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Supject;
+use App\Models\Subject;
 
 class SupjectController extends Controller
 {
     //
     public function index()
     {
-        return Supject::all();
+        return Subject::all();
     }
 
     public function store(Request $request)
@@ -21,7 +21,7 @@ class SupjectController extends Controller
             'sotinchi'=> 'required|integer|min:1|max:10'
         ]);
 
-        $monhoc = Supject::create($data);
+        $monhoc = Subject::create($data);
         return response()->json([
             'message'=> 'da them thanh cong',
             'data' => $monhoc
@@ -30,12 +30,12 @@ class SupjectController extends Controller
     
     public function show($id)
     {
-        return Supject::findOrFail($id);
+        return Subject::findOrFail($id);
     }
 
     public function update(Request $request, $id)
     {
-        $monhoc = Supject::findOrFail($id);
+        $monhoc = Subject::findOrFail($id);
         $data = $request->validate([
             'mamon' => 'sometimes|string|max:50|unique:supjects, mamon'. $id,
             'tenmon'=> 'sometimes|string|max:255',
@@ -50,7 +50,7 @@ class SupjectController extends Controller
 
     public function destroy($id)
     {
-        Supject::findOrFail($id)->delete();
+        Subject::findOrFail($id)->delete();
         return response()->json([
             'message'=> 'da xoa thanh cong'
         ]);
