@@ -16,6 +16,9 @@ return new class extends Migration
             $table-> string('mamon')->unique();
             $table-> string('tenmon');
             $table-> integer('sotinchi');
+
+            $table->foreignId('faculty_id')->constrained('faculties')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('supjects');
+        Schema::dropIfExists('subjects');
     }
 };

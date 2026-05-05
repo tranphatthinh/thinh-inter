@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subject;
 
-class SupjectController extends Controller
+class SubjectController extends Controller
 {
     //
     public function index()
@@ -16,7 +16,7 @@ class SupjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'mamon'=> 'required|string|max:50|unique:supjects',
+            'mamon'=> 'required|string|max:50|unique:subjects',
             'tenmon'=> 'required|string|max:255',
             'sotinchi'=> 'required|integer|min:1|max:10'
         ]);
@@ -37,7 +37,7 @@ class SupjectController extends Controller
     {
         $monhoc = Subject::findOrFail($id);
         $data = $request->validate([
-            'mamon' => 'sometimes|string|max:50|unique:supjects, mamon'. $id,
+            'mamon' => 'sometimes|string|max:50|unique:subjects, mamon'. $id,
             'tenmon'=> 'sometimes|string|max:255',
             'sotinchi' => 'sometimes|integer|min:1|max:10'
         ]);
